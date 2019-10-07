@@ -27,6 +27,7 @@ namespace PhotoRacoon
             InitializeComponent();
             DrawPrimitivesTest();
         }
+
         private void OnWindowClose(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Czy chcesz zakończyć pracę z aplikacją?", "Zakończ", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -41,7 +42,13 @@ namespace PhotoRacoon
 
         private void DrawPrimitivesTest()
         {
-            // Draw line
+            DrawLine();
+            DrawEllipse();
+            DrawRectangle();
+        }
+
+        private void DrawLine()
+        {
             Line line = new Line
             {
                 X2 = 200,
@@ -50,8 +57,12 @@ namespace PhotoRacoon
                 Stroke = new SolidColorBrush(Color.FromRgb(0, 255, 0))
             };
             MainCanvas.Children.Add(line);
+            Canvas.SetLeft(line, 110);
+            Canvas.SetTop(line, 100);
+        }
 
-            // Draw ellipse
+        private void DrawEllipse()
+        {
             Ellipse ellipse = new Ellipse
             {
                 Width = 300,
@@ -61,8 +72,12 @@ namespace PhotoRacoon
                 Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0))
             };
             MainCanvas.Children.Add(ellipse);
+            Canvas.SetLeft(ellipse, 40);
+            Canvas.SetTop(ellipse, 25);
+        }
 
-            // Draw rectangle
+        private void DrawRectangle()
+        {
             Rectangle rectangle = new Rectangle
             {
                 Width = 100,
@@ -72,6 +87,8 @@ namespace PhotoRacoon
                 Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255))
             };
             MainCanvas.Children.Add(rectangle);
+            Canvas.SetLeft(rectangle, 0);
+            Canvas.SetTop(rectangle, 100);
         }
     }
 }
