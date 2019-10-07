@@ -26,7 +26,6 @@ namespace PhotoRacoon
         public MainWindow()
         {
             InitializeComponent();
-            DrawPrimitivesTest();
         }
 
         private void OnWindowClose(object sender, System.ComponentModel.CancelEventArgs e)
@@ -106,7 +105,7 @@ namespace PhotoRacoon
             DrawLineWindow window = new DrawLineWindow();
             if ((bool)window.ShowDialog())
             {
-                DrawLine(window.X, window.Y, window.L, window.H);
+                DrawLine(window.X, window.Y, window.L, window.H, window.Th);
             }
         }
     }
