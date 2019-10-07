@@ -21,7 +21,7 @@ namespace PhotoRacoon
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UIElement selectedElement = null;
+        
 
         public MainWindow()
         {
@@ -66,7 +66,7 @@ namespace PhotoRacoon
             MainCanvas.Children.Add(line);
         }
 
-        private void DrawEllipse(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null, Color? FillColor = null)
+        private void DrawEllipse(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null, Color? fillColor = null)
         {
             Ellipse ellipse = new Ellipse
             {
@@ -74,7 +74,7 @@ namespace PhotoRacoon
                 Height = h,
                 StrokeThickness = thickness,
                 Stroke = new SolidColorBrush(strokeColor.GetValueOrDefault(Color.FromRgb(0, 0, 0))),
-                Fill = new SolidColorBrush(FillColor.GetValueOrDefault(Color.FromArgb(0, 0, 0, 0)))
+                Fill = new SolidColorBrush(fillColor.GetValueOrDefault(Color.FromArgb(0, 0, 0, 0)))
             };
             
             Canvas.SetLeft(ellipse, x);
