@@ -20,9 +20,12 @@ namespace PhotoRacoon
     /// </summary>
     public partial class MainWindow : Window
     {
+        private UIElement selectedElement = null;
+
         public MainWindow()
         {
             InitializeComponent();
+            DrawPrimitivesTest();
         }
         private void OnWindowClose(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -34,6 +37,41 @@ namespace PhotoRacoon
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void DrawPrimitivesTest()
+        {
+            // Draw line
+            Line line = new Line
+            {
+                X2 = 200,
+                Y2 = 400,
+                StrokeThickness = 4,
+                Stroke = new SolidColorBrush(Color.FromRgb(0, 255, 0))
+            };
+            MainCanvas.Children.Add(line);
+
+            // Draw ellipse
+            Ellipse ellipse = new Ellipse
+            {
+                Width = 300,
+                Height = 100,
+                StrokeThickness = 4,
+                Stroke = new SolidColorBrush(Color.FromRgb(255, 0, 255)),
+                Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0))
+            };
+            MainCanvas.Children.Add(ellipse);
+
+            // Draw rectangle
+            Rectangle rectangle = new Rectangle
+            {
+                Width = 100,
+                Height = 200,
+                StrokeThickness = 4,
+                Stroke = new SolidColorBrush(Color.FromRgb(255, 0, 0)),
+                Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255))
+            };
+            MainCanvas.Children.Add(rectangle);
         }
     }
 }
