@@ -13,9 +13,9 @@
                     <MenuItem Header="Wyjście" Name="CloseButton" Click="CloseButton_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Wstaw">
-                    <MenuItem Header="Linia"/>
-                    <MenuItem Header="Elipsa"/>
-                    <MenuItem Header="Prostokąt"/>
+                    <MenuItem Name="LineButton" Header="Linia" Click="LineButton_Click"/>
+                    <MenuItem Name="EllipseButton" Header="Elipsa"/>
+                    <MenuItem Name="RectangleButton" Header="Prostokąt"/>
                 </MenuItem>
             </Menu>
         </DockPanel>

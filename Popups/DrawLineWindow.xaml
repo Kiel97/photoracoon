@@ -1,0 +1,35 @@
+﻿<Window x:Class="PhotoRacoon.Popups.DrawLineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhotoRacoon.Popups"
+        mc:Ignorable="d"
+        Title="Dodaj linię" Height="200" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0">X: </Label>
+        <Label Grid.Row="1" Grid.Column="0">Y: </Label>
+        <Label Grid.Row="2" Grid.Column="0">Długość: </Label>
+        <Label Grid.Row="3" Grid.Column="0">Wysokość: </Label>
+        
+        <TextBox Name="TextBoxX" Grid.Row="0" Grid.Column="1">0</TextBox>
+        <TextBox Name="TextBoxY" Grid.Row="1" Grid.Column="1">0</TextBox>
+        <TextBox Name="TextBoxL" Grid.Row="2" Grid.Column="1">5</TextBox>
+        <TextBox Name="TextBoxH" Grid.Row="3" Grid.Column="1">5</TextBox>
+        
+        
+        <Button Name="OkButton" IsDefault="True" Grid.Row="4" Grid.Column="0" Click="OkButton_Click">OK</Button>
+        <Button Name="CancelButton" IsCancel="True" Grid.Row="4" Grid.Column="1" Click="CancelButton_Click">Anuluj</Button>
+    </Grid>
+</Window>

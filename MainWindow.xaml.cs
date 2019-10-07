@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoRacoon.Popups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,18 +49,18 @@ namespace PhotoRacoon
             DrawRectangle();
         }
 
-        private void DrawLine(double startPosX, double startPosY, double lengthX, double lengthY, double thickness = 4, Color? strokeColor = null)
+        private void DrawLine(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null)
         {
             Line line = new Line
             {
-                X2 = lengthX,
-                Y2 = lengthY,
+                X2 = w,
+                Y2 = h,
                 StrokeThickness = thickness,
                 Stroke = new SolidColorBrush(strokeColor.GetValueOrDefault(Color.FromRgb(0,0,0)))
             };
 
-            Canvas.SetLeft(line, startPosX);
-            Canvas.SetTop(line, startPosY);
+            Canvas.SetLeft(line, x);
+            Canvas.SetTop(line, y);
             
             MainCanvas.Children.Add(line);
         }
@@ -92,6 +93,15 @@ namespace PhotoRacoon
             MainCanvas.Children.Add(rectangle);
             Canvas.SetLeft(rectangle, 0);
             Canvas.SetTop(rectangle, 100);
+        }
+
+        private void LineButton_Click(object sender, RoutedEventArgs e)
+        {
+            DrawLineWindow window = new DrawLineWindow();
+            if ((bool)window.ShowDialog())
+            {
+                DrawLine(window.X, window.Y, window.L, window.H);
+            }
         }
     }
 }
