@@ -45,7 +45,8 @@ namespace PhotoRacoon
         {
             DrawLine(110, 100, 200, 400, 4, Color.FromRgb(0, 0, 255));
             DrawLine(0, 0, 15, 5, strokeColor: Color.FromRgb(255, 0, 0));
-            DrawEllipse();
+            DrawEllipse(40, 25, 300, 100, 4, Color.FromRgb(255, 0, 255), Color.FromRgb(255, 255, 0));
+            DrawEllipse(5, 5, 50, 50, 2, Color.FromRgb(255, 0, 255));
             DrawRectangle();
         }
 
@@ -65,19 +66,21 @@ namespace PhotoRacoon
             MainCanvas.Children.Add(line);
         }
 
-        private void DrawEllipse()
+        private void DrawEllipse(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null, Color? FillColor = null)
         {
             Ellipse ellipse = new Ellipse
             {
-                Width = 300,
-                Height = 100,
-                StrokeThickness = 4,
-                Stroke = new SolidColorBrush(Color.FromRgb(255, 0, 255)),
-                Fill = new SolidColorBrush(Color.FromRgb(255, 255, 0))
+                Width = w,
+                Height = h,
+                StrokeThickness = thickness,
+                Stroke = new SolidColorBrush(strokeColor.GetValueOrDefault(Color.FromRgb(0, 0, 0))),
+                Fill = new SolidColorBrush(FillColor.GetValueOrDefault(Color.FromArgb(0, 0, 0, 0)))
             };
+            
+            Canvas.SetLeft(ellipse, x);
+            Canvas.SetTop(ellipse, y);
+            
             MainCanvas.Children.Add(ellipse);
-            Canvas.SetLeft(ellipse, 40);
-            Canvas.SetTop(ellipse, 25);
         }
 
         private void DrawRectangle()
