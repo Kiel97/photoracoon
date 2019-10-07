@@ -20,9 +20,7 @@
             </Menu>
         </DockPanel>
         <Canvas x:Name="MainCanvas">
-            <Line X1="0" Y1="0" X2="100" Y2="100" Canvas.Left="300" Canvas.Top="0" Stroke="Black" StrokeThickness="4" />
-            <Ellipse Height="100" Width="200" Canvas.Left="148" Canvas.Top="58" Stroke="Black" StrokeThickness="4"/>
-            <Rectangle Width="100" Height="100" Stroke="Black" StrokeThickness="4" Canvas.Top="100" Canvas.Left="400"/>
+            
         </Canvas>
     </StackPanel>
 </Window>

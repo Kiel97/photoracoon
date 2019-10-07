@@ -42,23 +42,26 @@ namespace PhotoRacoon
 
         private void DrawPrimitivesTest()
         {
-            DrawLine();
+            DrawLine(110, 100, 200, 400, 4, Color.FromRgb(0, 0, 255));
+            DrawLine(0, 0, 15, 5, strokeColor: Color.FromRgb(255, 0, 0));
             DrawEllipse();
             DrawRectangle();
         }
 
-        private void DrawLine()
+        private void DrawLine(double startPosX, double startPosY, double lengthX, double lengthY, double thickness = 4, Color? strokeColor = null)
         {
             Line line = new Line
             {
-                X2 = 200,
-                Y2 = 400,
-                StrokeThickness = 4,
-                Stroke = new SolidColorBrush(Color.FromRgb(0, 255, 0))
+                X2 = lengthX,
+                Y2 = lengthY,
+                StrokeThickness = thickness,
+                Stroke = new SolidColorBrush(strokeColor.GetValueOrDefault(Color.FromRgb(0,0,0)))
             };
+
+            Canvas.SetLeft(line, startPosX);
+            Canvas.SetTop(line, startPosY);
+            
             MainCanvas.Children.Add(line);
-            Canvas.SetLeft(line, 110);
-            Canvas.SetTop(line, 100);
         }
 
         private void DrawEllipse()
