@@ -47,7 +47,8 @@ namespace PhotoRacoon
             DrawLine(0, 0, 15, 5, strokeColor: Color.FromRgb(255, 0, 0));
             DrawEllipse(40, 25, 300, 100, 4, Color.FromRgb(255, 0, 255), Color.FromRgb(255, 255, 0));
             DrawEllipse(5, 5, 50, 50, 2, Color.FromRgb(255, 0, 255));
-            DrawRectangle();
+            DrawRectangle(0, 100, 100, 200, 4, Color.FromRgb(255, 0, 0), Color.FromRgb(0, 0, 255));
+            DrawRectangle(50, 50, 30, 20, 7, Color.FromRgb(127, 127, 0));
         }
 
         private void DrawLine(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null)
@@ -83,19 +84,21 @@ namespace PhotoRacoon
             MainCanvas.Children.Add(ellipse);
         }
 
-        private void DrawRectangle()
+        private void DrawRectangle(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null, Color? fillColor = null)
         {
             Rectangle rectangle = new Rectangle
             {
-                Width = 100,
-                Height = 200,
-                StrokeThickness = 4,
-                Stroke = new SolidColorBrush(Color.FromRgb(255, 0, 0)),
-                Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255))
+                Width = w,
+                Height = h,
+                StrokeThickness = thickness,
+                Stroke = new SolidColorBrush(strokeColor.GetValueOrDefault(Color.FromRgb(0, 0, 0))),
+                Fill = new SolidColorBrush(fillColor.GetValueOrDefault(Color.FromArgb(0, 0, 0, 0)))
             };
+
+            Canvas.SetLeft(rectangle, x);
+            Canvas.SetTop(rectangle, y);
+            
             MainCanvas.Children.Add(rectangle);
-            Canvas.SetLeft(rectangle, 0);
-            Canvas.SetTop(rectangle, 100);
         }
 
         private void LineButton_Click(object sender, RoutedEventArgs e)
