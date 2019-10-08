@@ -34,7 +34,7 @@
         <TextBox Name="TextBoxL" Grid.Row="2" Grid.Column="1">5</TextBox>
         <TextBox Name="TextBoxH" Grid.Row="3" Grid.Column="1">5</TextBox>
         <TextBox Name="TextBoxTh" Grid.Row="4" Grid.Column="1">4</TextBox>
-        <xctk:ColorPicker Name="ColorPickerStroke"  Grid.Row="5" Grid.Column="1"></xctk:ColorPicker>
+        <xctk:ColorPicker Name="ColorPickerStroke" SelectedColor="White" Grid.Row="5" Grid.Column="1"></xctk:ColorPicker>
         
         
         <Button Name="OkButton" IsDefault="True" Grid.Row="7" Grid.Column="0" Click="OkButton_Click">OK</Button>

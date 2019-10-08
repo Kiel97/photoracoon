@@ -1,4 +1,5 @@
 ﻿using PhotoRacoon.Popups;
+using PhotoRacoon.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,12 @@ namespace PhotoRacoon
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        public List<Shape> shapesOnCanvas;
 
         public MainWindow()
         {
             InitializeComponent();
+            shapesOnCanvas = new List<Shape>();
         }
 
         private void OnWindowClose(object sender, System.ComponentModel.CancelEventArgs e)
@@ -38,32 +40,6 @@ namespace PhotoRacoon
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void DrawPrimitivesTest()
-        {
-            DrawLine(110, 100, 200, 400, 4, Color.FromRgb(0, 0, 255));
-            DrawLine(0, 0, 15, 5, strokeColor: Color.FromRgb(255, 0, 0));
-            DrawEllipse(40, 25, 300, 100, 4, Color.FromRgb(255, 0, 255), Color.FromRgb(255, 255, 0));
-            DrawEllipse(5, 5, 50, 50, 2, Color.FromRgb(255, 0, 255));
-            DrawRectangle(0, 100, 100, 200, 4, Color.FromRgb(255, 0, 0), Color.FromRgb(0, 0, 255));
-            DrawRectangle(50, 50, 30, 20, 7, Color.FromRgb(127, 127, 0));
-        }
-
-        private void DrawLine(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null)
-        {
-            Line line = new Line
-            {
-                X2 = w,
-                Y2 = h,
-                StrokeThickness = thickness,
-                Stroke = new SolidColorBrush(strokeColor.GetValueOrDefault(Color.FromRgb(0,0,0)))
-            };
-
-            Canvas.SetLeft(line, x);
-            Canvas.SetTop(line, y);
-            
-            MainCanvas.Children.Add(line);
         }
 
         private void DrawEllipse(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null, Color? fillColor = null)
@@ -105,7 +81,8 @@ namespace PhotoRacoon
             DrawLineWindow window = new DrawLineWindow();
             if ((bool)window.ShowDialog())
             {
-                DrawLine(window.X, window.Y, window.L, window.H, window.Th, window.SC);
+                SLine line = new SLine(window.X, window.Y, window.L, window.H);
+                line.Draw(ref MainCanvas);
             }
         }
     }
