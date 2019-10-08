@@ -19,10 +19,10 @@ namespace PhotoRacoon.Popups
     /// </summary>
     public partial class DrawLineWindow : Window
     {
-        public double X;
-        public double Y;
-        public double L;
-        public double H;
+        public double X1;
+        public double Y1;
+        public double X2;
+        public double Y2;
 
         public DrawLineWindow()
         {
@@ -31,10 +31,10 @@ namespace PhotoRacoon.Popups
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            X = double.Parse(TextBoxX.Text);
-            Y = double.Parse(TextBoxY.Text);
-            L = double.Parse(TextBoxL.Text);
-            H = double.Parse(TextBoxH.Text);
+            X1 = double.Parse(TextBoxX1.Text);
+            Y1 = double.Parse(TextBoxY1.Text);
+            X2 = double.Parse(TextBoxX2.Text);
+            Y2 = double.Parse(TextBoxY2.Text);
 
             DialogResult = true;
         }

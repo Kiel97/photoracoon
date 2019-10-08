@@ -81,7 +81,7 @@ namespace PhotoRacoon
             DrawLineWindow window = new DrawLineWindow();
             if ((bool)window.ShowDialog())
             {
-                SLine line = new SLine(window.X, window.Y, window.L, window.H);
+                SLine line = new SLine(window.X1, window.Y1, window.X2, window.Y2);
                 line.Draw(ref MainCanvas);
                 shapesOnCanvas.Add(line);
             }
