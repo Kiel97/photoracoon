@@ -19,10 +19,10 @@ namespace PhotoRacoon.Popups
     /// </summary>
     public partial class DrawRectangleWindow : Window
     {
-        public double X1;
-        public double Y1;
-        public double X2;
-        public double Y2;
+        public double X;
+        public double Y;
+        public double W;
+        public double H;
 
         public DrawRectangleWindow()
         {
@@ -30,10 +30,10 @@ namespace PhotoRacoon.Popups
         }
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            X1 = double.Parse(TextBoxX1.Text);
-            Y1 = double.Parse(TextBoxY1.Text);
-            X2 = double.Parse(TextBoxX2.Text);
-            Y2 = double.Parse(TextBoxY2.Text);
+            X = double.Parse(TextBoxX.Text);
+            Y = double.Parse(TextBoxY.Text);
+            W = double.Parse(TextBoxW.Text);
+            H = double.Parse(TextBoxH.Text);
 
             DialogResult = true;
         }

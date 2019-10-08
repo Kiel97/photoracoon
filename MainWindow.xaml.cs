@@ -59,23 +59,6 @@ namespace PhotoRacoon
             MainCanvas.Children.Add(ellipse);
         }
 
-        private void DrawRectangle(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null, Color? fillColor = null)
-        {
-            Rectangle rectangle = new Rectangle
-            {
-                Width = w,
-                Height = h,
-                StrokeThickness = thickness,
-                Stroke = new SolidColorBrush(strokeColor.GetValueOrDefault(Color.FromRgb(0, 0, 0))),
-                Fill = new SolidColorBrush(fillColor.GetValueOrDefault(Color.FromArgb(0, 0, 0, 0)))
-            };
-
-            Canvas.SetLeft(rectangle, x);
-            Canvas.SetTop(rectangle, y);
-            
-            MainCanvas.Children.Add(rectangle);
-        }
-
         private void LineButton_Click(object sender, RoutedEventArgs e)
         {
             DrawLineWindow window = new DrawLineWindow();
@@ -99,7 +82,9 @@ namespace PhotoRacoon
             DrawRectangleWindow window = new DrawRectangleWindow();
             if ((bool)window.ShowDialog())
             {
-                Console.WriteLine($"Rysujemy prostokąt {window.X1},{window.Y1} {window.X2},{window.Y2} ");
+                SRectangle rectangle = new SRectangle(window.X, window.Y, window.W, window.H);
+                rectangle.Draw(ref MainCanvas);
+                shapesOnCanvas.Add(rectangle);
             }
         }
 
