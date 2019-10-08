@@ -23,7 +23,7 @@ namespace PhotoRacoon.Shapes
 
         public override void Draw(ref Canvas target)
         {
-            DrawCircle(ref target, point.X - radius, point.Y - radius, 2 * radius, 2 * radius, normalColor);
+            DrawCircle(ref target, point.X - radius, point.Y - radius, 4 * radius, 4 * radius, normalColor);
         }
 
         public override string ToString()
