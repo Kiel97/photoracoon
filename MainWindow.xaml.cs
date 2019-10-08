@@ -42,23 +42,6 @@ namespace PhotoRacoon
             this.Close();
         }
 
-        private void DrawEllipse(double x, double y, double w, double h, double thickness = 4, Color? strokeColor = null, Color? fillColor = null)
-        {
-            Ellipse ellipse = new Ellipse
-            {
-                Width = w,
-                Height = h,
-                StrokeThickness = thickness,
-                Stroke = new SolidColorBrush(strokeColor.GetValueOrDefault(Color.FromRgb(0, 0, 0))),
-                Fill = new SolidColorBrush(fillColor.GetValueOrDefault(Color.FromArgb(0, 0, 0, 0)))
-            };
-            
-            Canvas.SetLeft(ellipse, x);
-            Canvas.SetTop(ellipse, y);
-            
-            MainCanvas.Children.Add(ellipse);
-        }
-
         private void LineButton_Click(object sender, RoutedEventArgs e)
         {
             DrawLineWindow window = new DrawLineWindow();
@@ -74,7 +57,9 @@ namespace PhotoRacoon
             DrawCircleWindow window = new DrawCircleWindow();
             if ((bool)window.ShowDialog())
             {
-                Console.WriteLine($"Rysujemy koło {window.X}, {window.Y}, {window.R}");
+                SCircle circle = new SCircle(window.X, window.Y, window.R);
+                circle.Draw(ref MainCanvas);
+                shapesOnCanvas.Add(circle);
             }
         }
         private void RectangleButton_Click(object sender, RoutedEventArgs e)

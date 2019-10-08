@@ -76,6 +76,7 @@
     <Compile Include="Popups\DrawRectangleWindow.xaml.cs">
       <DependentUpon>DrawRectangleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Shapes\SCircle.cs" />
     <Compile Include="Shapes\SLine.cs" />
     <Compile Include="Shapes\SRectangle.cs" />
     <Compile Include="Shapes\SShape.cs" />
