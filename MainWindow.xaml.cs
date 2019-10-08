@@ -105,7 +105,7 @@ namespace PhotoRacoon
             DrawLineWindow window = new DrawLineWindow();
             if ((bool)window.ShowDialog())
             {
-                DrawLine(window.X, window.Y, window.L, window.H, window.Th);
+                DrawLine(window.X, window.Y, window.L, window.H, window.Th, window.SC);
             }
         }
     }
