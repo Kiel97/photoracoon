@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PhotoRacoon.Popups"
         mc:Ignorable="d"
-        Title="Dodaj linię" Height="214" Width="300">
+        Title="Dodaj linię" Height="178" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -30,8 +30,15 @@
         <TextBox Name="TextBoxX2" Grid.Row="2" Grid.Column="1">5</TextBox>
         <TextBox Name="TextBoxY2" Grid.Row="3" Grid.Column="1">5</TextBox>
 
+        <Grid Grid.Row="5" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="OkButton" IsDefault="True" Grid.Column="0" Click="OkButton_Click">OK</Button>
+            <Button Name="CancelButton" IsCancel="True" Grid.Column="1" Click="CancelButton_Click">Anuluj</Button>
+        </Grid>
 
-        <Button Name="OkButton" IsDefault="True" Grid.Row="7" Grid.Column="0" Click="OkButton_Click">OK</Button>
-        <Button Name="CancelButton" IsCancel="True" Grid.Row="7" Grid.Column="1" Click="CancelButton_Click">Anuluj</Button>
+        
     </Grid>
 </Window>
