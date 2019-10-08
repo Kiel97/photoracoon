@@ -6,8 +6,13 @@
         xmlns:local="clr-namespace:PhotoRacoon"
         mc:Ignorable="d"
         Title="Photo Racoon v.1.0.0" Height="640" Width="800" Closing="OnWindowClose">
-    <StackPanel>
-        <DockPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Plik">
                     <MenuItem Header="Wyjście" Name="CloseButton" Click="CloseButton_Click"/>
@@ -22,8 +27,11 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Canvas x:Name="MainCanvas">
-            
+        <Canvas x:Name="MainCanvas" Grid.Row="1">
+
         </Canvas>
-    </StackPanel>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem Name="MousePosStatusBar">Mouse: </StatusBarItem>
+        </StatusBar>
+    </Grid>
 </Window>
