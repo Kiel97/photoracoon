@@ -23,7 +23,7 @@ namespace PhotoRacoon.Shapes
 
         public override void Draw(ref Canvas target)
         {
-            DrawCircle(ref target, point.X - radius, point.Y - radius, 4 * radius, 4 * radius, normalColor);
+            DrawCircle(ref target, point.X, point.Y, radius, normalColor);
         }
 
         public override string ToString()
@@ -31,8 +31,14 @@ namespace PhotoRacoon.Shapes
             return $"Circle Point({point}) Radius({radius})";
         }
 
-        private void DrawCircle(ref Canvas target, double x, double y, double w, double h, Color? strokeColor = null, double thickness = 1)
+        private void DrawCircle(ref Canvas target, double x, double y, double r, Color? strokeColor = null, double thickness = 1)
         {
+            double X = x - r;
+            double Y = y - r;
+
+            double w = 2*r;
+            double h = 2*r;
+
             Ellipse ellipse = new Ellipse
             {
                 Width = w,
@@ -41,8 +47,8 @@ namespace PhotoRacoon.Shapes
                 Stroke = new SolidColorBrush(strokeColor.GetValueOrDefault(Color.FromRgb(0, 0, 0)))
             };
 
-            Canvas.SetLeft(ellipse, x);
-            Canvas.SetTop(ellipse, y);
+            Canvas.SetLeft(ellipse, X);
+            Canvas.SetTop(ellipse, Y);
 
             target.Children.Add(ellipse);
         }
