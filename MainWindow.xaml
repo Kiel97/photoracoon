@@ -9,28 +9,32 @@
     <Grid Background="#eeeeee">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <DockPanel Grid.Row="0">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Plik">
-                    <MenuItem Header="Wyjście" Name="CloseButton" Click="CloseButton_Click"/>
-                </MenuItem>
-                <MenuItem Header="_Wstaw">
-                    <MenuItem Name="LineButton" Header="Linia" Click="LineButton_Click"/>
-                    <MenuItem Name="EllipseButton" Header="Elipsa"/>
-                    <MenuItem Name="RectangleButton" Header="Prostokąt"/>
-                </MenuItem>
-                <MenuItem Header="DEBUG">
-                    <MenuItem Header="Wypisz figury z płótna" Click="MenuItem_Click"/>
-                </MenuItem>
-            </Menu>
-        </DockPanel>
-        <Canvas Margin="5" x:Name="MainCanvas" Grid.Row="1" Background="White">
+        <Menu Grid.Row="0">
+            <MenuItem Header="_Plik">
+                <MenuItem Header="Wyjście" Name="CloseButton" Click="CloseButton_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Wstaw">
+                <MenuItem Name="LineButton" Header="Linia" Click="LineButton_Click"/>
+                <MenuItem Name="CircleButton" Header="Koło"/>
+                <MenuItem Name="RectangleButton" Header="Prostokąt"/>
+            </MenuItem>
+            <MenuItem Header="DEBUG">
+                <MenuItem Header="Wypisz figury z płótna" Click="MenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <ToolBar Grid.Row="1">
+            <RadioButton Style="{StaticResource {x:Type ToggleButton}}">Linia</RadioButton>
+            <RadioButton Style="{StaticResource {x:Type ToggleButton}}">Koło</RadioButton>
+            <RadioButton Style="{StaticResource {x:Type ToggleButton}}">Prostokąt</RadioButton>
+        </ToolBar>
+        <Canvas Margin="5" x:Name="MainCanvas" Grid.Row="2" Background="White">
 
         </Canvas>
-        <StatusBar Grid.Row="2">
+        <StatusBar Grid.Row="3">
             <StatusBarItem Name="MousePosStatusBar">Mouse: </StatusBarItem>
         </StatusBar>
     </Grid>
