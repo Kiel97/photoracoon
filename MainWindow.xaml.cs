@@ -94,6 +94,14 @@ namespace PhotoRacoon
                 Console.WriteLine($"Rysujemy koło {window.X}, {window.Y}, {window.R}");
             }
         }
+        private void RectangleButton_Click(object sender, RoutedEventArgs e)
+        {
+            DrawRectangleWindow window = new DrawRectangleWindow();
+            if ((bool)window.ShowDialog())
+            {
+                Console.WriteLine($"Rysujemy prostokąt {window.X1},{window.Y1} {window.X2},{window.Y2} ");
+            }
+        }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -103,6 +111,5 @@ namespace PhotoRacoon
                 Console.WriteLine(shape);
             }
         }
-
     }
 }

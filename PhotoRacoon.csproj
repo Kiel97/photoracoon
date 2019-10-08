@@ -73,6 +73,9 @@
     <Compile Include="Popups\DrawCircleWindow.xaml.cs">
       <DependentUpon>DrawCircleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Popups\DrawRectangleWindow.xaml.cs">
+      <DependentUpon>DrawRectangleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Shapes\SLine.cs" />
     <Compile Include="Shapes\SShape.cs" />
     <Page Include="MainWindow.xaml">
@@ -92,6 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\DrawLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\DrawRectangleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
