@@ -86,6 +86,14 @@ namespace PhotoRacoon
                 shapesOnCanvas.Add(line);
             }
         }
+        private void CircleButton_Click(object sender, RoutedEventArgs e)
+        {
+            DrawCircleWindow window = new DrawCircleWindow();
+            if ((bool)window.ShowDialog())
+            {
+                Console.WriteLine($"Rysujemy koło {window.X}, {window.Y}, {window.R}");
+            }
+        }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -95,5 +103,6 @@ namespace PhotoRacoon
                 Console.WriteLine(shape);
             }
         }
+
     }
 }

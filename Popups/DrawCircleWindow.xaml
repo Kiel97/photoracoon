@@ -1,12 +1,11 @@
-﻿<Window x:Class="PhotoRacoon.Popups.DrawLineWindow"
+﻿<Window x:Class="PhotoRacoon.Popups.DrawCircleWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PhotoRacoon.Popups"
         mc:Ignorable="d"
-        Title="Dodaj linię" Height="178" Width="300">
+        Title="Dodaj koło" Height="178" Width="300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -16,21 +15,18 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0">Punkt X1:</Label>
-        <Label Grid.Row="1" Grid.Column="0">Punkt Y1:</Label>
-        <Label Grid.Row="2" Grid.Column="0">Punkt X2:</Label>
-        <Label Grid.Row="3" Grid.Column="0">Punkt Y2:</Label>
+        <Label Grid.Row="0" Grid.Column="0">Środek X:</Label>
+        <Label Grid.Row="1" Grid.Column="0">Środek Y:</Label>
+        <Label Grid.Row="2" Grid.Column="0">Promień:</Label>
 
-        <TextBox Name="TextBoxX1" Grid.Row="0" Grid.Column="1">0</TextBox>
-        <TextBox Name="TextBoxY1" Grid.Row="1" Grid.Column="1">0</TextBox>
-        <TextBox Name="TextBoxX2" Grid.Row="2" Grid.Column="1">5</TextBox>
-        <TextBox Name="TextBoxY2" Grid.Row="3" Grid.Column="1">5</TextBox>
+        <TextBox Name="TextBoxX" Grid.Row="0" Grid.Column="1">0</TextBox>
+        <TextBox Name="TextBoxY" Grid.Row="1" Grid.Column="1">0</TextBox>
+        <TextBox Name="TextBoxR" Grid.Row="2" Grid.Column="1">5</TextBox>
 
-        <Grid Grid.Row="5" Grid.ColumnSpan="2">
+        <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

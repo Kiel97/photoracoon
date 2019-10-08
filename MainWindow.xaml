@@ -19,7 +19,7 @@
             </MenuItem>
             <MenuItem Header="_Wstaw">
                 <MenuItem Name="LineButton" Header="Linia" Click="LineButton_Click"/>
-                <MenuItem Name="CircleButton" Header="Koło"/>
+                <MenuItem Name="CircleButton" Header="Koło" Click="CircleButton_Click"/>
                 <MenuItem Name="RectangleButton" Header="Prostokąt"/>
             </MenuItem>
             <MenuItem Header="DEBUG">
