@@ -17,6 +17,9 @@
                     <MenuItem Name="EllipseButton" Header="Elipsa"/>
                     <MenuItem Name="RectangleButton" Header="Prostokąt"/>
                 </MenuItem>
+                <MenuItem Header="DEBUG">
+                    <MenuItem Header="Wypisz figury z płótna" Click="MenuItem_Click"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
         <Canvas x:Name="MainCanvas">

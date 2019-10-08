@@ -23,8 +23,6 @@ namespace PhotoRacoon.Popups
         public double Y;
         public double L;
         public double H;
-        public double Th;
-        public Color SC;
 
         public DrawLineWindow()
         {
@@ -37,8 +35,6 @@ namespace PhotoRacoon.Popups
             Y = double.Parse(TextBoxY.Text);
             L = double.Parse(TextBoxL.Text);
             H = double.Parse(TextBoxH.Text);
-            Th = double.Parse(TextBoxTh.Text);
-            SC = (Color)ColorPickerStroke.SelectedColor;
 
             DialogResult = true;
         }

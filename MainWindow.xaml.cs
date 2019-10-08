@@ -22,12 +22,12 @@ namespace PhotoRacoon
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Shape> shapesOnCanvas;
+        public List<SShape> shapesOnCanvas;
 
         public MainWindow()
         {
             InitializeComponent();
-            shapesOnCanvas = new List<Shape>();
+            shapesOnCanvas = new List<SShape>();
         }
 
         private void OnWindowClose(object sender, System.ComponentModel.CancelEventArgs e)
@@ -83,6 +83,16 @@ namespace PhotoRacoon
             {
                 SLine line = new SLine(window.X, window.Y, window.L, window.H);
                 line.Draw(ref MainCanvas);
+                shapesOnCanvas.Add(line);
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Figury na płótnie: ");
+            foreach (SShape shape in shapesOnCanvas)
+            {
+                Console.WriteLine(shape);
             }
         }
     }

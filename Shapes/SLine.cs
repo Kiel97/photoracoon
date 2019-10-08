@@ -23,8 +23,12 @@ namespace PhotoRacoon.Shapes
 
         public override void Draw(ref Canvas target)
         {
-            Console.WriteLine($"Rysowanie linii... Punkt1: {point1}, Punkt2: {point2}");
             DrawLine(ref target, point1.X, point1.Y, point2.X, point2.Y, normalColor);
+        }
+
+        public override string ToString()
+        {
+            return $"Line: ({point1}) ({point2})";
         }
 
         private void DrawLine(ref Canvas target, double x, double y, double w, double h, Color? strokeColor = null, double thickness = 1)

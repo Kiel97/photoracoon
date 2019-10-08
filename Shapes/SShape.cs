@@ -16,5 +16,6 @@ namespace PhotoRacoon.Shapes
         public Color highlightedColor = Color.FromArgb(127, 116, 41, 255);
 
         public abstract void Draw(ref Canvas target);
+        public override abstract String ToString();
     }
 }
