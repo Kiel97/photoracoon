@@ -28,9 +28,13 @@
             </MenuItem>
         </Menu>
         <ToolBar Grid.Row="1">
-            <RadioButton Style="{StaticResource {x:Type ToggleButton}}">Linia</RadioButton>
-            <RadioButton Style="{StaticResource {x:Type ToggleButton}}">Koło</RadioButton>
-            <RadioButton Style="{StaticResource {x:Type ToggleButton}}">Prostokąt</RadioButton>
+            <StackPanel Name="DrawingStackPanel" Orientation="Horizontal">
+                <Label>Rysowanie:</Label>
+                <RadioButton Name="DrawNothingRadioButton" Style="{StaticResource {x:Type ToggleButton}}" IsChecked="True" Checked="DrawSelectionChanged">Nic</RadioButton>
+                <RadioButton Name="DrawLineRadioButton" Style="{StaticResource {x:Type ToggleButton}}">Linia</RadioButton>
+                <RadioButton Name="DrawCircleRadioButton" Style="{StaticResource {x:Type ToggleButton}}">Koło</RadioButton>
+                <RadioButton Name="DrawRectangleRadioButton" Style="{StaticResource {x:Type ToggleButton}}">Prostokąt</RadioButton>
+            </StackPanel>
         </ToolBar>
         <Canvas Margin="5" x:Name="MainCanvas" Grid.Row="2" Background="White" ClipToBounds="True" MouseMove="MainCanvas_MouseMove">
 

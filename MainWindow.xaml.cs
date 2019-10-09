@@ -23,6 +23,12 @@ namespace PhotoRacoon
     public partial class MainWindow : Window
     {
         public List<SShape> shapesOnCanvas;
+        public DrawingMode currentMode;
+
+        public enum DrawingMode
+        {
+            NOTHING, LINE, CIRCLE, RECTANGLE
+        }
 
         public MainWindow()
         {
@@ -100,6 +106,28 @@ namespace PhotoRacoon
         {
             shapesOnCanvas.Clear();
             MainCanvas.Children.Clear();
+        }
+
+        private void DrawSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            RadioButton radiobutton = sender as RadioButton;
+            switch (radiobutton.Name)
+            {
+                case "DrawNothingRadioButton":
+                    currentMode = DrawingMode.NOTHING;
+                    break;
+                case "DrawLineRadioButton":
+                    currentMode = DrawingMode.LINE;
+                    break;
+                case "DrawCircleRadioButton":
+                    currentMode = DrawingMode.CIRCLE;
+                    break;
+                case "DrawRectangleRadioButton":
+                    currentMode = DrawingMode.RECTANGLE;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("Unknown RadioButton name");
+            }
         }
     }
 }
