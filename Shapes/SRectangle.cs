@@ -47,6 +47,8 @@ namespace PhotoRacoon.Shapes
             Canvas.SetTop(rectangle, y);
 
             target.Children.Add(rectangle);
+
+            element = rectangle;
         }
     }
 }

@@ -51,6 +51,8 @@ namespace PhotoRacoon.Shapes
             Canvas.SetTop(ellipse, Y);
 
             target.Children.Add(ellipse);
+
+            element = ellipse;
         }
     }
 }

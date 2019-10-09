@@ -79,6 +79,7 @@ namespace PhotoRacoon
             foreach (SShape shape in shapesOnCanvas)
             {
                 Console.WriteLine(shape);
+                Console.WriteLine(shape.element);
             }
         }
     }
