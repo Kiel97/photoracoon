@@ -82,5 +82,11 @@ namespace PhotoRacoon
                 Console.WriteLine(shape.element);
             }
         }
+
+        private void MainCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point mousePosition = Mouse.GetPosition(MainCanvas);
+            MousePosStatusBar.Content = $"X: {(int)mousePosition.X}, Y: {(int)mousePosition.Y}";
+        }
     }
 }
