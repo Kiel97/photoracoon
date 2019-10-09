@@ -12,6 +12,8 @@ namespace PhotoRacoon.Shapes
 {
     public abstract class SShape
     {
+        public UIElement element;
+
         public Color normalColor = Color.FromArgb(255, 0, 0, 0);
         public Color highlightedColor = Color.FromArgb(127, 116, 41, 255);
 
