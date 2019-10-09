@@ -36,7 +36,7 @@
                 <RadioButton Name="DrawRectangleRadioButton" Style="{StaticResource {x:Type ToggleButton}}">Prostokąt</RadioButton>
             </StackPanel>
         </ToolBar>
-        <Canvas Margin="5" x:Name="MainCanvas" Grid.Row="2" Background="White" ClipToBounds="True" MouseMove="MainCanvas_MouseMove">
+        <Canvas Margin="5" x:Name="MainCanvas" Grid.Row="2" Background="White" ClipToBounds="True" MouseMove="MainCanvas_MouseMove" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown" MouseLeftButtonUp="MainCanvas_MouseLeftButtonUp">
 
         </Canvas>
         <StatusBar Grid.Row="3">

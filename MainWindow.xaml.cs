@@ -25,6 +25,12 @@ namespace PhotoRacoon
         public List<SShape> shapesOnCanvas;
         public DrawingMode currentMode;
 
+        public Point mainPointCaptured;
+        public Point otherPointCaptured;
+        public UIElement currentDrawnElement = null;
+
+        public bool pressed = false;
+
         public enum DrawingMode
         {
             NOTHING, LINE, CIRCLE, RECTANGLE
@@ -62,6 +68,7 @@ namespace PhotoRacoon
             DrawLineWindow window = new DrawLineWindow();
             if ((bool)window.ShowDialog())
             {
+                // TODO: Refactor
                 SLine line = new SLine(window.X1, window.Y1, window.X2, window.Y2);
                 line.Draw(ref MainCanvas);
                 shapesOnCanvas.Add(line);
@@ -72,6 +79,7 @@ namespace PhotoRacoon
             DrawCircleWindow window = new DrawCircleWindow();
             if ((bool)window.ShowDialog())
             {
+                // TODO: Refactor
                 SCircle circle = new SCircle(window.X, window.Y, window.R);
                 circle.Draw(ref MainCanvas);
                 shapesOnCanvas.Add(circle);
@@ -82,6 +90,7 @@ namespace PhotoRacoon
             DrawRectangleWindow window = new DrawRectangleWindow();
             if ((bool)window.ShowDialog())
             {
+                // TODO: Refactor
                 SRectangle rectangle = new SRectangle(window.X, window.Y, window.W, window.H);
                 rectangle.Draw(ref MainCanvas);
                 shapesOnCanvas.Add(rectangle);
@@ -102,6 +111,11 @@ namespace PhotoRacoon
         {
             Point mousePosition = Mouse.GetPosition(MainCanvas);
             MousePosStatusBar.Content = $"X: {(int)mousePosition.X}, Y: {(int)mousePosition.Y}";
+
+            if (pressed)
+            {
+                Console.WriteLine($"Pressed LMB: {mousePosition}");
+            }
         }
 
         private void NewCanvasButton_Click(object sender, RoutedEventArgs e)
@@ -138,6 +152,79 @@ namespace PhotoRacoon
                     throw new ArgumentOutOfRangeException("Unknown RadioButton name");
             }
             PaintModeStatusBar.Content = currentMode.ToString();
+        }
+
+        private void MainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(currentMode == DrawingMode.NOTHING)
+            {
+                return;
+            }
+
+            // TODO: Refactor
+            switch (currentMode)
+            {
+                case DrawingMode.NOTHING:
+                    return;
+                case DrawingMode.LINE:
+                    break;
+                case DrawingMode.CIRCLE:
+                    break;
+                case DrawingMode.RECTANGLE:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("Unknown drawing mode!");
+            }
+
+            pressed = true;
+
+            mainPointCaptured = Mouse.GetPosition(MainCanvas);
+            Console.WriteLine($" Main point {mainPointCaptured}");
+        }
+
+        private void MainCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (currentMode == DrawingMode.NOTHING)
+            {
+                return;
+            }
+
+            pressed = false;
+
+            otherPointCaptured = Mouse.GetPosition(MainCanvas);
+            Console.WriteLine($" Other point {otherPointCaptured}");
+
+            // TODO: Refactor
+            switch (currentMode)
+            {
+                case DrawingMode.LINE:
+                    SLine line = new SLine(mainPointCaptured.X, mainPointCaptured.Y, otherPointCaptured.X, otherPointCaptured.Y);
+                    line.Draw(ref MainCanvas);
+                    shapesOnCanvas.Add(line);
+                    break;
+                case DrawingMode.CIRCLE:
+                    double radius = Point.Subtract(otherPointCaptured, mainPointCaptured).Length;
+                    SCircle circle = new SCircle(mainPointCaptured.X, mainPointCaptured.Y, radius);
+                    circle.Draw(ref MainCanvas);
+                    shapesOnCanvas.Add(circle);
+                    break;
+                case DrawingMode.RECTANGLE:
+                    double startX = Math.Min(mainPointCaptured.X, otherPointCaptured.X);
+                    double startY = Math.Min(mainPointCaptured.Y, otherPointCaptured.Y);
+
+                    double width = Math.Abs(otherPointCaptured.X - mainPointCaptured.X);
+                    double height = Math.Abs(otherPointCaptured.Y - mainPointCaptured.Y);
+
+                    SRectangle rectangle = new SRectangle(startX, startY, width, height);
+                    rectangle.Draw(ref MainCanvas);
+                    shapesOnCanvas.Add(rectangle);
+                    break;
+                default:
+                    return;
+            }
+
+            mainPointCaptured = new Point();
+            otherPointCaptured = new Point();
         }
     }
 }
