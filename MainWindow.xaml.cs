@@ -88,5 +88,18 @@ namespace PhotoRacoon
             Point mousePosition = Mouse.GetPosition(MainCanvas);
             MousePosStatusBar.Content = $"X: {(int)mousePosition.X}, Y: {(int)mousePosition.Y}";
         }
+
+        private void NewCanvasButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Czy chcesz wyczyścić płótno ze wszystkich figur?", "Nowe płótno", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+                ClearAllShapes();
+        }
+
+        private void ClearAllShapes()
+        {
+            shapesOnCanvas.Clear();
+            MainCanvas.Children.Clear();
+        }
     }
 }

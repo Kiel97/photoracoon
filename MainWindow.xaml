@@ -15,6 +15,7 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="_Plik">
+                <MenuItem Header="_Nowy" Name="NewCanvasButton" Click="NewCanvasButton_Click" />
                 <MenuItem Header="Wyjście" Name="CloseButton" Click="CloseButton_Click"/>
             </MenuItem>
             <MenuItem Header="_Wstaw">
