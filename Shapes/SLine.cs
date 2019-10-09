@@ -12,23 +12,23 @@ namespace PhotoRacoon.Shapes
 {
     public class SLine : SShape
     {
-        public Point point1;
-        public Point point2;
+        public Point startingPoint;
+        public Point relativePoint;
 
         public SLine(double x1, double y1, double x2, double y2)
         {
-            point1 = new Point(x1, y1);
-            point2 = new Point(x2, y2);
+            startingPoint = new Point(x1, y1);
+            relativePoint = new Point(x2, y2);
         }
 
         public override void Draw(ref Canvas target)
         {
-            DrawLine(ref target, point1.X, point1.Y, point2.X, point2.Y, normalColor);
+            DrawLine(ref target, startingPoint.X, startingPoint.Y, relativePoint.X-startingPoint.X, relativePoint.Y-startingPoint.Y, normalColor);
         }
 
         public override string ToString()
         {
-            return $"Line: ({point1}) ({point2})";
+            return $"Line: Starting Point:({startingPoint}), Relative Point:({relativePoint})";
         }
 
         private void DrawLine(ref Canvas target, double x, double y, double w, double h, Color? strokeColor = null, double thickness = 1)
