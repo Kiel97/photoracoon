@@ -30,7 +30,7 @@
         <ToolBar Grid.Row="1">
             <StackPanel Name="DrawingStackPanel" Orientation="Horizontal">
                 <Label>Rysowanie:</Label>
-                <RadioButton Name="DrawNothingRadioButton" Style="{StaticResource {x:Type ToggleButton}}" IsChecked="True" Checked="DrawSelectionChanged">Nic</RadioButton>
+                <RadioButton Name="DrawNothingRadioButton" Style="{StaticResource {x:Type ToggleButton}}" IsChecked="True">Nic</RadioButton>
                 <RadioButton Name="DrawLineRadioButton" Style="{StaticResource {x:Type ToggleButton}}">Linia</RadioButton>
                 <RadioButton Name="DrawCircleRadioButton" Style="{StaticResource {x:Type ToggleButton}}">Koło</RadioButton>
                 <RadioButton Name="DrawRectangleRadioButton" Style="{StaticResource {x:Type ToggleButton}}">Prostokąt</RadioButton>
@@ -40,7 +40,8 @@
 
         </Canvas>
         <StatusBar Grid.Row="3">
-            <StatusBarItem Name="MousePosStatusBar" Content="X: 0 Y: 0"></StatusBarItem>
+            <StatusBarItem DockPanel.Dock="Left" Name="MousePosStatusBar" Content="X: 0 Y: 0"></StatusBarItem>
+            <StatusBarItem DockPanel.Dock="Right" Name="PaintModeStatusBar" Content="NOTHING"></StatusBarItem>
         </StatusBar>
     </Grid>
 </Window>

@@ -33,7 +33,16 @@ namespace PhotoRacoon
         public MainWindow()
         {
             InitializeComponent();
+            lateInitEvents();
             shapesOnCanvas = new List<SShape>();
+        }
+
+        private void lateInitEvents()
+        {
+            DrawNothingRadioButton.Checked += DrawModeSelectionChanged;
+            DrawLineRadioButton.Checked += DrawModeSelectionChanged;
+            DrawCircleRadioButton.Checked += DrawModeSelectionChanged;
+            DrawRectangleRadioButton.Checked += DrawModeSelectionChanged;
         }
 
         private void OnWindowClose(object sender, System.ComponentModel.CancelEventArgs e)
@@ -108,7 +117,7 @@ namespace PhotoRacoon
             MainCanvas.Children.Clear();
         }
 
-        private void DrawSelectionChanged(object sender, RoutedEventArgs e)
+        private void DrawModeSelectionChanged(object sender, RoutedEventArgs e)
         {
             RadioButton radiobutton = sender as RadioButton;
             switch (radiobutton.Name)
@@ -128,6 +137,7 @@ namespace PhotoRacoon
                 default:
                     throw new ArgumentOutOfRangeException("Unknown RadioButton name");
             }
+            PaintModeStatusBar.Content = currentMode.ToString();
         }
     }
 }
