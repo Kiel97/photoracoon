@@ -177,6 +177,7 @@ namespace PhotoRacoon
             }
 
             pressed = true;
+            PressedStateStatusBar.Content = "DRAWING";
 
             mainPointCaptured = Mouse.GetPosition(MainCanvas);
             Console.WriteLine($" Main point {mainPointCaptured}");
@@ -190,6 +191,7 @@ namespace PhotoRacoon
             }
 
             pressed = false;
+            PressedStateStatusBar.Content = String.Empty;
 
             otherPointCaptured = Mouse.GetPosition(MainCanvas);
             Console.WriteLine($" Other point {otherPointCaptured}");
