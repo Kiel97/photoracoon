@@ -1,4 +1,5 @@
-﻿using PhotoRacoon.Popups;
+﻿using Microsoft.Win32;
+using PhotoRacoon.Popups;
 using PhotoRacoon.Shapes;
 using System;
 using System.Collections.Generic;
@@ -227,6 +228,24 @@ namespace PhotoRacoon
 
             mainPointCaptured = new Point();
             otherPointCaptured = new Point();
+        }
+
+        private void OpenPPMButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Pliki PPM (*.ppm)|*.ppm|Wszystkie pliki (*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+            if ((bool)openFileDialog.ShowDialog())
+            {
+                LoadPPMImageAsBitmap(openFileDialog.FileName);
+            }
+        }
+
+        private void LoadPPMImageAsBitmap(string filepath)
+        {
+            Console.WriteLine(filepath);
         }
     }
 }
