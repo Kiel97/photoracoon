@@ -247,9 +247,6 @@ namespace PhotoRacoon
         private void LoadPPMImageAsBitmap(string filepath)
         {
             System.Drawing.Bitmap bitmap = PPMReader.ReadBitmapFromPPM(filepath);
-
-            Window window = new Window();
-            window.Show();
         }
     }
 }
