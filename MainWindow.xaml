@@ -20,6 +20,7 @@
                     <MenuItem Header="PPM" Name="OpenPPMButton" Click="OpenPPMButton_Click"/>
                     <MenuItem Header="JPG" Name="OpenJPGButton" Click="OpenJPGButton_Click"/>
                 </MenuItem>
+                <MenuItem Header="_Zapisz" Name="SaveCanvasButton" Click="SaveCanvasButton_Click" />
                 <Separator/>
                 <MenuItem Header="Wyjście" Name="CloseButton" Click="CloseButton_Click"/>
             </MenuItem>
