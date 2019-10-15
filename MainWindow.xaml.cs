@@ -251,5 +251,20 @@ namespace PhotoRacoon
             Window window = new Window();
             window.Show();
         }
+
+        private void OpenJPGButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Pliki JPG (*.jpg, *.jpeg)|*.jpg;*.jpeg";
+            if ((bool)openFileDialog.ShowDialog())
+            {
+                BitmapImage loadedBitmap = new BitmapImage(new Uri(openFileDialog.FileName));
+
+                Image image = new Image();
+                image.Source = loadedBitmap;
+
+                MainCanvas.Children.Add(image);
+            }
+        }
     }
 }

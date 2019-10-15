@@ -18,6 +18,7 @@
                 <MenuItem Header="_Nowy" Name="NewCanvasButton" Click="NewCanvasButton_Click" />
                 <MenuItem Header="_Otwórz">
                     <MenuItem Header="PPM" Name="OpenPPMButton" Click="OpenPPMButton_Click"/>
+                    <MenuItem Header="JPG" Name="OpenJPGButton" Click="OpenJPGButton_Click"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="Wyjście" Name="CloseButton" Click="CloseButton_Click"/>
