@@ -258,10 +258,13 @@ namespace PhotoRacoon
             openFileDialog.Filter = "Pliki JPG (*.jpg, *.jpeg)|*.jpg;*.jpeg";
             if ((bool)openFileDialog.ShowDialog())
             {
-                BitmapImage loadedBitmap = new BitmapImage(new Uri(openFileDialog.FileName));
+                ClearAllShapes();
+                DrawNothingRadioButton.IsChecked = true;
 
-                Image image = new Image();
-                image.Source = loadedBitmap;
+                Image image = new Image
+                {
+                    Source = new BitmapImage(new Uri(openFileDialog.FileName))
+                };
 
                 MainCanvas.Children.Add(image);
             }
