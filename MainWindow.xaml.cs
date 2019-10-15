@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using PhotoRacoon.Popups;
+using PhotoRacoon.Readers;
 using PhotoRacoon.Shapes;
 using System;
 using System.Collections.Generic;
@@ -245,7 +246,10 @@ namespace PhotoRacoon
 
         private void LoadPPMImageAsBitmap(string filepath)
         {
-            Console.WriteLine(filepath);
+            System.Drawing.Bitmap bitmap = PPMReader.ReadBitmapFromPPM(filepath);
+
+            Window window = new Window();
+            window.Show();
         }
     }
 }
