@@ -28,18 +28,17 @@ namespace PhotoRacoon
     public partial class MainWindow : Window
     {
         public List<SShape> shapesOnCanvas;
-        public DrawingMode currentMode;
-
-        public Point mainPointCaptured;
-        public Point otherPointCaptured;
-        public UIElement currentDrawnElement = null;
-
-        public bool pressed = false;
 
         public enum DrawingMode
         {
             NOTHING, LINE, CIRCLE, RECTANGLE
         }
+        public static DrawingMode currentMode;
+
+        public Point mainPointCaptured;
+        public Point otherPointCaptured;
+
+        public bool pressed = false;
 
         public MainWindow()
         {

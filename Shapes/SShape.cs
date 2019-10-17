@@ -24,7 +24,8 @@ namespace PhotoRacoon.Shapes
 
         public void OnHover(object sender, MouseEventArgs e)
         {
-            element.Stroke = new SolidColorBrush(highlightedColor);
+            if (MainWindow.currentMode == MainWindow.DrawingMode.NOTHING)
+                element.Stroke = new SolidColorBrush(highlightedColor);
         }
 
         public void OnHoverLost(object sender, MouseEventArgs e)
