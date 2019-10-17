@@ -4,6 +4,8 @@ using PhotoRacoon.Readers;
 using PhotoRacoon.Shapes;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -247,6 +249,74 @@ namespace PhotoRacoon
         private void LoadPPMImageAsBitmap(string filepath)
         {
             System.Drawing.Bitmap bitmap = PPMReader.ReadBitmapFromPPM(filepath);
+        }
+
+        private void OpenJPGButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Pliki JPG (*.jpg, *.jpeg)|*.jpg;*.jpeg"
+            };
+
+            if ((bool)openFileDialog.ShowDialog())
+            {
+                ClearAllShapes();
+                DrawNothingRadioButton.IsChecked = true;
+
+                Image image = new Image
+                {
+                    Source = new BitmapImage(new Uri(openFileDialog.FileName))
+                };
+
+                MainCanvas.Children.Add(image);
+            }
+        }
+
+        private void SaveCanvasButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Plik JPG (*.jpg)|*.jpg"
+            };
+
+            if ((bool)saveFileDialog.ShowDialog())
+            {
+                JpegQualityPopup popup = new JpegQualityPopup();
+
+                if ((bool)popup.ShowDialog())
+                {
+                    SaveImage(MainCanvas, (int)MainCanvas.ActualWidth, (int)MainCanvas.ActualHeight, saveFileDialog.FileName, popup.Quality);
+                }
+            }
+        }
+
+        public void SaveImage(Canvas canvas, int width, int height, string filePath, int quality=90)
+        {
+            Rect bounds = VisualTreeHelper.GetDescendantBounds(canvas);
+            double dpi = 96d;
+            RenderTargetBitmap rtb = new RenderTargetBitmap(width, height, dpi, dpi, System.Windows.Media.PixelFormats.Default);
+
+            DrawingVisual dv = new DrawingVisual();
+            using (DrawingContext dc = dv.RenderOpen())
+            {
+                VisualBrush vb = new VisualBrush(canvas);
+                dc.DrawRectangle(vb, null, new Rect(new Point(), bounds.Size));
+            }
+
+            rtb.Render(dv);
+
+            JpegBitmapEncoder image = new JpegBitmapEncoder
+            {
+                QualityLevel = quality
+            };
+
+            image.Frames.Add(BitmapFrame.Create(rtb));
+
+            using (Stream fs = File.Create(filePath))
+            {
+                image.Save(fs);
+                fs.Close();
+            }
         }
     }
 }
