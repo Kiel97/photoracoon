@@ -85,6 +85,7 @@
     <Compile Include="Shapes\SLine.cs" />
     <Compile Include="Shapes\SRectangle.cs" />
     <Compile Include="Shapes\SShape.cs" />
+    <Compile Include="Writers\JpegWriter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
