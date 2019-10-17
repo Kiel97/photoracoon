@@ -2,6 +2,7 @@
 using PhotoRacoon.Popups;
 using PhotoRacoon.Readers;
 using PhotoRacoon.Shapes;
+using PhotoRacoon.Windows;
 using PhotoRacoon.Writers;
 using System;
 using System.Collections.Generic;
@@ -297,7 +298,8 @@ namespace PhotoRacoon
 
         private void RGBcubeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Show3DCubeWindow window = new Show3DCubeWindow();
+            window.ShowDialog();
         }
     }
 }

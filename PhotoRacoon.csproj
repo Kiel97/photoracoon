@@ -85,6 +85,9 @@
     <Compile Include="Shapes\SLine.cs" />
     <Compile Include="Shapes\SRectangle.cs" />
     <Compile Include="Shapes\SShape.cs" />
+    <Compile Include="Windows\Show3DCubeWindow.xaml.cs">
+      <DependentUpon>Show3DCubeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Writers\JpegWriter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +114,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\JpegQualityPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Show3DCubeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
