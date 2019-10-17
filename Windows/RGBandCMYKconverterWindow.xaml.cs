@@ -22,6 +22,13 @@ namespace PhotoRacoon.Windows
         public RGBandCMYKconverterWindow()
         {
             InitializeComponent();
+            SliderR.ValueChanged += SliderR_ValueChanged;
+            SliderG.ValueChanged += SliderG_ValueChanged;
+            SliderB.ValueChanged += SliderB_ValueChanged;
+            SliderC.ValueChanged += SliderC_ValueChanged;
+            SliderM.ValueChanged += SliderM_ValueChanged;
+            SliderY.ValueChanged += SliderY_ValueChanged;
+            SliderK.ValueChanged += SliderK_ValueChanged;
         }
 
         private void CalculateCMYKtoRGB()
@@ -30,7 +37,39 @@ namespace PhotoRacoon.Windows
             byte G = (byte)(255 * (1 - SliderM.Value) * (1 - SliderK.Value));
             byte B = (byte)(255 * (1 - SliderY.Value) * (1 - SliderK.Value));
 
-            ColorSample.Fill = new SolidColorBrush(Color.FromRgb(R, G, B));
+            fillSample(R, G, B);
+
+            SliderR.Value = R;
+            SliderG.Value = G;
+            SliderB.Value = B;
+        }
+
+        private void CalculateRGBtoCMYK()
+        {
+            double C, M, Y;
+            double K = 1 - Math.Max(SliderR.Value/255, Math.Max(SliderG.Value/255, SliderB.Value/255));
+            if (K == 1)
+            {
+                C = (1 - SliderR.Value / 255);
+                M = (1 - SliderG.Value / 255);
+                Y = (1 - SliderB.Value / 255);
+            }
+            else
+            {
+                C = (1 - SliderR.Value / 255 - K) / (1 - K);
+                M = (1 - SliderG.Value / 255 - K) / (1 - K);
+                Y = (1 - SliderB.Value / 255 - K) / (1 - K);
+            }
+
+            SliderC.Value = Math.Round(C, 2);
+            SliderM.Value = Math.Round(M, 2);
+            SliderY.Value = Math.Round(Y, 2);
+            SliderK.Value = Math.Round(K, 2);
+        }
+
+        private void fillSample(byte r, byte g, byte b)
+        {
+            ColorSample.Fill = new SolidColorBrush(Color.FromRgb(r, g, b));
         }
 
         private void SliderC_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -51,6 +90,23 @@ namespace PhotoRacoon.Windows
         private void SliderK_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             CalculateCMYKtoRGB();
+        }
+
+        private void SliderR_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            fillSample((byte)SliderR.Value, (byte)SliderG.Value, (byte)SliderB.Value);
+            CalculateRGBtoCMYK();
+        }
+
+        private void SliderG_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            fillSample((byte)SliderR.Value, (byte)SliderG.Value, (byte)SliderB.Value);
+            CalculateRGBtoCMYK();
+        }
+        private void SliderB_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            fillSample((byte)SliderR.Value, (byte)SliderG.Value, (byte)SliderB.Value);
+            CalculateRGBtoCMYK();
         }
     }
 }
