@@ -289,5 +289,15 @@ namespace PhotoRacoon
                 }
             }
         }
+
+        private void RGB_CMYK_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RGBcubeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
