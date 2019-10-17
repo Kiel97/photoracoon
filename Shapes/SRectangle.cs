@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -46,9 +47,24 @@ namespace PhotoRacoon.Shapes
             Canvas.SetLeft(rectangle, x);
             Canvas.SetTop(rectangle, y);
 
+            rectangle.MouseEnter += OnHover;
+            rectangle.MouseLeave += OnHoverLost;
+
             target.Children.Add(rectangle);
 
             element = rectangle;
+        }
+
+        private void OnHover(object sender, MouseEventArgs e)
+        {
+            Rectangle rect = element as Rectangle;
+            rect.Stroke = new SolidColorBrush(highlightedColor);
+        }
+
+        private void OnHoverLost(object sender, MouseEventArgs e)
+        {
+            Rectangle rect = element as Rectangle;
+            rect.Stroke = new SolidColorBrush(normalColor);
         }
     }
 }

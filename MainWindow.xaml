@@ -43,7 +43,7 @@
             </StackPanel>
         </ToolBar>
         <Canvas Margin="5" x:Name="MainCanvas" Grid.Row="2" Background="White" ClipToBounds="True" MouseMove="MainCanvas_MouseMove" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown" MouseLeftButtonUp="MainCanvas_MouseLeftButtonUp">
-
+            
         </Canvas>
         <StatusBar Grid.Row="3">
             <StatusBarItem DockPanel.Dock="Left" Name="MousePosStatusBar" Content="X: 0 Y: 0"></StatusBarItem>
