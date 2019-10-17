@@ -23,5 +23,34 @@ namespace PhotoRacoon.Windows
         {
             InitializeComponent();
         }
+
+        private void CalculateCMYKtoRGB()
+        {
+            byte R = (byte)(255 * (1 - SliderC.Value) * (1 - SliderK.Value));
+            byte G = (byte)(255 * (1 - SliderM.Value) * (1 - SliderK.Value));
+            byte B = (byte)(255 * (1 - SliderY.Value) * (1 - SliderK.Value));
+
+            ColorSample.Fill = new SolidColorBrush(Color.FromRgb(R, G, B));
+        }
+
+        private void SliderC_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            CalculateCMYKtoRGB();
+        }
+
+        private void SliderM_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            CalculateCMYKtoRGB();
+        }
+
+        private void SliderY_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            CalculateCMYKtoRGB();
+        }
+
+        private void SliderK_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            CalculateCMYKtoRGB();
+        }
     }
 }
