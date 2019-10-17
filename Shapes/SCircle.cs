@@ -50,9 +50,12 @@ namespace PhotoRacoon.Shapes
             Canvas.SetLeft(ellipse, X);
             Canvas.SetTop(ellipse, Y);
 
-            target.Children.Add(ellipse);
-
             element = ellipse;
+
+            element.MouseEnter += OnHover;
+            element.MouseLeave += OnHoverLost;
+
+            target.Children.Add(ellipse);
         }
     }
 }

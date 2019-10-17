@@ -44,9 +44,12 @@ namespace PhotoRacoon.Shapes
             Canvas.SetLeft(line, x);
             Canvas.SetTop(line, y);
 
-            target.Children.Add(line);
-
             element = line;
+
+            element.MouseEnter += OnHover;
+            element.MouseLeave += OnHoverLost;
+
+            target.Children.Add(line);
         }
 
     }

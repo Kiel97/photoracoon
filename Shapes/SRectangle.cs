@@ -47,24 +47,12 @@ namespace PhotoRacoon.Shapes
             Canvas.SetLeft(rectangle, x);
             Canvas.SetTop(rectangle, y);
 
-            rectangle.MouseEnter += OnHover;
-            rectangle.MouseLeave += OnHoverLost;
+            element = rectangle;
+
+            element.MouseEnter += OnHover;
+            element.MouseLeave += OnHoverLost;
 
             target.Children.Add(rectangle);
-
-            element = rectangle;
-        }
-
-        private void OnHover(object sender, MouseEventArgs e)
-        {
-            Rectangle rect = element as Rectangle;
-            rect.Stroke = new SolidColorBrush(highlightedColor);
-        }
-
-        private void OnHoverLost(object sender, MouseEventArgs e)
-        {
-            Rectangle rect = element as Rectangle;
-            rect.Stroke = new SolidColorBrush(normalColor);
         }
     }
 }
