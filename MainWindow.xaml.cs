@@ -293,7 +293,8 @@ namespace PhotoRacoon
 
         private void RGB_CMYK_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            RGBandCMYKconverterWindow window = new RGBandCMYKconverterWindow();
+            window.ShowDialog();
         }
 
         private void RGBcubeButton_Click(object sender, RoutedEventArgs e)
