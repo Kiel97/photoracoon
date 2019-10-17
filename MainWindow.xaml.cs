@@ -4,6 +4,7 @@ using PhotoRacoon.Readers;
 using PhotoRacoon.Shapes;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -283,11 +284,16 @@ namespace PhotoRacoon
 
             if ((bool)saveFileDialog.ShowDialog())
             {
-                SaveImage(MainCanvas, (int)MainCanvas.ActualWidth, (int)MainCanvas.ActualHeight, saveFileDialog.FileName);
+                JpegQualityPopup popup = new JpegQualityPopup();
+
+                if ((bool)popup.ShowDialog())
+                {
+                    SaveImage(MainCanvas, (int)MainCanvas.ActualWidth, (int)MainCanvas.ActualHeight, saveFileDialog.FileName, popup.Quality);
+                }
             }
         }
 
-        public void SaveImage(Canvas canvas, int width, int height, string filePath)
+        public void SaveImage(Canvas canvas, int width, int height, string filePath, int quality=90)
         {
             Rect bounds = VisualTreeHelper.GetDescendantBounds(canvas);
             double dpi = 96d;
@@ -302,7 +308,11 @@ namespace PhotoRacoon
 
             rtb.Render(dv);
 
-            JpegBitmapEncoder image = new JpegBitmapEncoder();
+            JpegBitmapEncoder image = new JpegBitmapEncoder
+            {
+                QualityLevel = quality
+            };
+
             image.Frames.Add(BitmapFrame.Create(rtb));
 
             using (Stream fs = File.Create(filePath))

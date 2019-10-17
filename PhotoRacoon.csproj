@@ -77,6 +77,9 @@
     <Compile Include="Popups\DrawRectangleWindow.xaml.cs">
       <DependentUpon>DrawRectangleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Popups\JpegQualityPopup.xaml.cs">
+      <DependentUpon>JpegQualityPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Readers\PPMReader.cs" />
     <Compile Include="Shapes\SCircle.cs" />
     <Compile Include="Shapes\SLine.cs" />
@@ -103,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\DrawRectangleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\JpegQualityPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
