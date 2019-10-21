@@ -23,6 +23,30 @@ namespace PhotoRacoon.Readers
             
             if (type == PPM_TYPE.UNKNOWN)
                 throw new ArgumentOutOfRangeException("Invalid PPM type");
+            bool isComment = false;
+
+            char read;
+
+            do
+            {
+                try
+                {
+                    read = reader.ReadChar();
+
+                    if (read == '#')
+                        isComment = true;
+                    if (read == '\n')
+                        isComment = false;
+                }
+                catch (ArgumentException ex)
+                {// "Krzak" znak
+                    reader.Close();
+                    throw new ArgumentException();
+                }
+            }
+            while (char.IsWhiteSpace(read) || isComment);
+
+            int width = read - '0';
 
             Bitmap bitmap = new Bitmap(200, 100);
             //Read in the pixels

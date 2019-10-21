@@ -257,6 +257,10 @@ namespace PhotoRacoon
             {
                 MessageBox.Show(ex.ToString(), "Invalid PPM format.", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.ToString(), "Illegal character in PPM file", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void OpenJPGButton_Click(object sender, RoutedEventArgs e)
