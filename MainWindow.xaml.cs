@@ -249,7 +249,14 @@ namespace PhotoRacoon
 
         private void LoadPPMImageAsBitmap(string filepath)
         {
-            System.Drawing.Bitmap bitmap = PPMReader.ReadBitmapFromPPM(filepath);
+            try
+            {
+                System.Drawing.Bitmap bitmap = PPMReader.ReadBitmapFromPPM(filepath);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show(ex.ToString(), "Invalid PPM format.", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void OpenJPGButton_Click(object sender, RoutedEventArgs e)

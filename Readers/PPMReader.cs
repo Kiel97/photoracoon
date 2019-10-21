@@ -10,30 +10,40 @@ namespace PhotoRacoon.Readers
 {
     public static class PPMReader
     {
+        public enum PPM_TYPE
+        {
+            UNKNOWN, P3, P6
+        }
+
         public static Bitmap ReadBitmapFromPPM(string file)
         {
             var reader = new BinaryReader(new FileStream(file, FileMode.Open));
-            if (reader.ReadChar() != 'P' || reader.ReadChar() != '6')
-                return null;
-            reader.ReadChar(); //Eat newline
-            string widths = "", heights = "";
-            char temp;
-            while ((temp = reader.ReadChar()) != ' ')
-                widths += temp;
-            while ((temp = reader.ReadChar()) >= '0' && temp <= '9')
-                heights += temp;
-            if (reader.ReadChar() != '2' || reader.ReadChar() != '5' || reader.ReadChar() != '5')
-                return null;
-            reader.ReadChar(); //Eat the last newline
-            int width = int.Parse(widths),
-                height = int.Parse(heights);
-            Bitmap bitmap = new Bitmap(width, height);
+
+            PPM_TYPE type = GetPPMtype(reader.ReadChar(), reader.ReadChar());
+            
+            if (type == PPM_TYPE.UNKNOWN)
+                throw new ArgumentOutOfRangeException("Invalid PPM type");
+
+            Bitmap bitmap = new Bitmap(200, 100);
             //Read in the pixels
-            for (int y = 0; y < height; y++)
-                for (int x = 0; x < width; x++)
-                    bitmap.SetPixel(x, y, Color.FromArgb(255, reader.ReadByte(), reader.ReadByte(), reader.ReadByte()));
+            //for (int y = 0; y < 100; y++)
+            //    for (int x = 0; x < 200; x++)
+            //        bitmap.SetPixel(x, y, Color.FromArgb(255, reader.ReadByte(), reader.ReadByte(), reader.ReadByte()));
 
             return bitmap;
+        }
+
+        private static PPM_TYPE GetPPMtype(char p, char n)
+        {
+            if (p != 'P' && p != 'p')
+                return PPM_TYPE.UNKNOWN;
+
+            if (n == '3')
+                return PPM_TYPE.P3;
+            else if (n == '6')
+                return PPM_TYPE.P6;
+            else
+                return PPM_TYPE.UNKNOWN;
         }
     }
 }
