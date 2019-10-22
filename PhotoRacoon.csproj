@@ -71,6 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BitmapToImageSource.cs" />
     <Compile Include="Popups\DrawCircleWindow.xaml.cs">
       <DependentUpon>DrawCircleWindow.xaml</DependentUpon>
     </Compile>

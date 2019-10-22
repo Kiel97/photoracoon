@@ -4,6 +4,7 @@ using PhotoRacoon.Readers;
 using PhotoRacoon.Shapes;
 using PhotoRacoon.Windows;
 using PhotoRacoon.Writers;
+using PhotoRacoon.Converters;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -252,6 +253,24 @@ namespace PhotoRacoon
             try
             {
                 System.Drawing.Bitmap bitmap = PPMReader.ReadBitmapFromPPM(filepath);
+
+                Image image = new Image
+                {
+                    Source = Converters.Converters.BitmapToImageSource(bitmap)
+                };
+
+                Window window = new Window
+                {
+                    Title = $"PPM Viewer Pro - {filepath}",
+                    MinWidth = 5,
+                    MinHeight = 5,
+                    Width = bitmap.Width,
+                    Height = bitmap.Height,
+                    Content = image
+                };
+
+                window.Show();
+
             }
             catch (ArgumentOutOfRangeException ex)
             {
