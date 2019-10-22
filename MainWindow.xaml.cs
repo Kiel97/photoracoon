@@ -255,15 +255,15 @@ namespace PhotoRacoon
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                MessageBox.Show(ex.ToString(), "Invalid PPM format.", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.ToString(), ex.ParamName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.ToString(), "Illegal character in PPM file", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.ToString(), ex.ParamName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (NotSupportedException ex)
             {
-                MessageBox.Show(ex.ToString(), "P6 is not supported yet. Sorry.", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(ex.ToString(), ex.Message, MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

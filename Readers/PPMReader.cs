@@ -10,6 +10,8 @@ namespace PhotoRacoon.Readers
 {
     public static class PPMReader
     {
+        // http://netpbm.sourceforge.net/doc/ppm.html
+
         private static BinaryReader reader;
         private static char read = ' ';
 
@@ -29,19 +31,39 @@ namespace PhotoRacoon.Readers
                     if (type == PPM_TYPE.UNKNOWN)
                         throw new ArgumentOutOfRangeException("Invalid PPM type");
                     else if (type == PPM_TYPE.P6)
-                        throw new NotSupportedException("Not implemented yet.");
+                        throw new NotSupportedException("P6 format is not implemented yet");
 
                     int width = getNumber();
                     int height = getNumber();
+                    int limit = getNumber();
+
+                    if (limit < 0 || limit > 65535)
+                        throw new ArgumentOutOfRangeException($"Invalid maximum color value: {limit}");
 
                     Bitmap bitmap = new Bitmap(width, height);
-                    //Read in the pixels
-                    //for (int y = 0; y < 100; y++)
-                    //    for (int x = 0; x < 200; x++)
-                    //        bitmap.SetPixel(x, y, Color.FromArgb(255, reader.ReadByte(), reader.ReadByte(), reader.ReadByte()));
+
+
+                    for (int y = 0; y < height; y++)
+                    {
+                        for (int x = 0; x < width; x++)
+                        {
+                            int red = getNumber();
+                            if (red < 0 || red > limit)
+                                throw new ArgumentOutOfRangeException($"Invalid red color value: {red}");
+
+                            int green = getNumber();
+                            if (green < 0 || green > limit)
+                                throw new ArgumentOutOfRangeException($"Invalid green color value: {green}");
+
+                            int blue = getNumber();
+                            if (blue < 0 || blue > limit)
+                                throw new ArgumentOutOfRangeException($"Invalid blue color value: {blue}");
+
+                            bitmap.SetPixel(x, y, Color.FromArgb(255, red, green, blue));
+                        }
+                    }
 
                     return bitmap;
-
                 }
             }
         }
