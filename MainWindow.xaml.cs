@@ -261,6 +261,10 @@ namespace PhotoRacoon
             {
                 MessageBox.Show(ex.ToString(), "Illegal character in PPM file", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            catch (NotSupportedException ex)
+            {
+                MessageBox.Show(ex.ToString(), "P6 is not supported yet. Sorry.", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void OpenJPGButton_Click(object sender, RoutedEventArgs e)

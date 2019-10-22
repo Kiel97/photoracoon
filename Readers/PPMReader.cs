@@ -22,35 +22,39 @@ namespace PhotoRacoon.Readers
                 using(BinaryReader reader = new BinaryReader(fs))
                 {
                     PPM_TYPE type = GetPPMtype(reader.ReadChar(), reader.ReadChar());
-            
+
                     if (type == PPM_TYPE.UNKNOWN)
                         throw new ArgumentOutOfRangeException("Invalid PPM type");
+                    else if (type == PPM_TYPE.P6)
+                        throw new NotSupportedException("Not implemented yet.");
+
                     bool isComment = false;
 
                     char read;
 
                     do
                     {
-                        try
-                        {
-                            read = reader.ReadChar();
+                        read = reader.ReadChar();
 
-                            if (read == '#')
-                                isComment = true;
-                            if (read == '\n')
-                                isComment = false;
-                        }
-                        catch (ArgumentException ex)
-                        {// "Krzak" znak
-                            reader.Close();
-                            throw new ArgumentException();
-                        }
+                        if (read == '#')
+                            isComment = true;
+                        if (read == '\n')
+                            isComment = false;
                     }
                     while (char.IsWhiteSpace(read) || isComment);
 
-                    int width = read - '0';
 
-                    Bitmap bitmap = new Bitmap(200, 100);
+                    StringBuilder s = new StringBuilder();
+                    while (char.IsDigit(read))
+                    {
+                        s.Append(read);
+                        read = reader.ReadChar();
+                    }
+
+                    int width = int.Parse(s.ToString());
+
+
+                    Bitmap bitmap = new Bitmap(width, 100);
                     //Read in the pixels
                     //for (int y = 0; y < 100; y++)
                     //    for (int x = 0; x < 200; x++)
