@@ -10,6 +10,9 @@ namespace PhotoRacoon.Readers
 {
     public static class PPMReader
     {
+        private static BinaryReader reader;
+
+
         public enum PPM_TYPE
         {
             UNKNOWN, P3, P6
@@ -19,7 +22,7 @@ namespace PhotoRacoon.Readers
         {
             using(FileStream fs = new FileStream(file, FileMode.Open))
             {
-                using(BinaryReader reader = new BinaryReader(fs))
+                using(reader = new BinaryReader(fs))
                 {
                     PPM_TYPE type = GetPPMtype(reader.ReadChar(), reader.ReadChar());
 
@@ -28,33 +31,33 @@ namespace PhotoRacoon.Readers
                     else if (type == PPM_TYPE.P6)
                         throw new NotSupportedException("Not implemented yet.");
 
-                    bool isComment = false;
+                    char read = ' ';
 
-                    char read;
+                    // Get to width value
+                    skipToFirstDigit(ref read);
 
-                    do
-                    {
-                        read = reader.ReadChar();
-
-                        if (read == '#')
-                            isComment = true;
-                        if (read == '\n')
-                            isComment = false;
-                    }
-                    while (char.IsWhiteSpace(read) || isComment);
-
-
+                    // Build width value
                     StringBuilder s = new StringBuilder();
                     while (char.IsDigit(read))
                     {
                         s.Append(read);
                         read = reader.ReadChar();
                     }
-
                     int width = int.Parse(s.ToString());
 
+                    // Get to height value
+                    skipToFirstDigit(ref read);
 
-                    Bitmap bitmap = new Bitmap(width, 100);
+                    // Build height value
+                    s = new StringBuilder();
+                    while (char.IsDigit(read))
+                    {
+                        s.Append(read);
+                        read = reader.ReadChar();
+                    }
+                    int height = int.Parse(s.ToString());
+
+                    Bitmap bitmap = new Bitmap(width, height);
                     //Read in the pixels
                     //for (int y = 0; y < 100; y++)
                     //    for (int x = 0; x < 200; x++)
@@ -77,6 +80,22 @@ namespace PhotoRacoon.Readers
                 return PPM_TYPE.P6;
             else
                 return PPM_TYPE.UNKNOWN;
+        }
+
+        private static void skipToFirstDigit(ref char read)
+        {
+            bool isComment = false;
+
+            do
+            {
+                read = reader.ReadChar();
+
+                if (read == '#')
+                    isComment = true;
+                if (read == '\n')
+                    isComment = false;
+            }
+            while (char.IsWhiteSpace(read) || isComment);
         }
     }
 }
