@@ -17,44 +17,49 @@ namespace PhotoRacoon.Readers
 
         public static Bitmap ReadBitmapFromPPM(string file)
         {
-            var reader = new BinaryReader(new FileStream(file, FileMode.Open));
-
-            PPM_TYPE type = GetPPMtype(reader.ReadChar(), reader.ReadChar());
-            
-            if (type == PPM_TYPE.UNKNOWN)
-                throw new ArgumentOutOfRangeException("Invalid PPM type");
-            bool isComment = false;
-
-            char read;
-
-            do
+            using(FileStream fs = new FileStream(file, FileMode.Open))
             {
-                try
+                using(BinaryReader reader = new BinaryReader(fs))
                 {
-                    read = reader.ReadChar();
+                    PPM_TYPE type = GetPPMtype(reader.ReadChar(), reader.ReadChar());
+            
+                    if (type == PPM_TYPE.UNKNOWN)
+                        throw new ArgumentOutOfRangeException("Invalid PPM type");
+                    bool isComment = false;
 
-                    if (read == '#')
-                        isComment = true;
-                    if (read == '\n')
-                        isComment = false;
-                }
-                catch (ArgumentException ex)
-                {// "Krzak" znak
-                    reader.Close();
-                    throw new ArgumentException();
+                    char read;
+
+                    do
+                    {
+                        try
+                        {
+                            read = reader.ReadChar();
+
+                            if (read == '#')
+                                isComment = true;
+                            if (read == '\n')
+                                isComment = false;
+                        }
+                        catch (ArgumentException ex)
+                        {// "Krzak" znak
+                            reader.Close();
+                            throw new ArgumentException();
+                        }
+                    }
+                    while (char.IsWhiteSpace(read) || isComment);
+
+                    int width = read - '0';
+
+                    Bitmap bitmap = new Bitmap(200, 100);
+                    //Read in the pixels
+                    //for (int y = 0; y < 100; y++)
+                    //    for (int x = 0; x < 200; x++)
+                    //        bitmap.SetPixel(x, y, Color.FromArgb(255, reader.ReadByte(), reader.ReadByte(), reader.ReadByte()));
+
+                    return bitmap;
+
                 }
             }
-            while (char.IsWhiteSpace(read) || isComment);
-
-            int width = read - '0';
-
-            Bitmap bitmap = new Bitmap(200, 100);
-            //Read in the pixels
-            //for (int y = 0; y < 100; y++)
-            //    for (int x = 0; x < 200; x++)
-            //        bitmap.SetPixel(x, y, Color.FromArgb(255, reader.ReadByte(), reader.ReadByte(), reader.ReadByte()));
-
-            return bitmap;
         }
 
         private static PPM_TYPE GetPPMtype(char p, char n)
