@@ -11,7 +11,7 @@ namespace PhotoRacoon.Readers
     public static class PPMReader
     {
         private static BinaryReader reader;
-
+        private static char read = ' ';
 
         public enum PPM_TYPE
         {
@@ -31,31 +31,10 @@ namespace PhotoRacoon.Readers
                     else if (type == PPM_TYPE.P6)
                         throw new NotSupportedException("Not implemented yet.");
 
-                    char read = ' ';
-
-                    // Get to width value
-                    skipToFirstDigit(ref read);
-
-                    // Build width value
-                    StringBuilder s = new StringBuilder();
-                    while (char.IsDigit(read))
-                    {
-                        s.Append(read);
-                        read = reader.ReadChar();
-                    }
-                    int width = int.Parse(s.ToString());
-
-                    // Get to height value
-                    skipToFirstDigit(ref read);
-
-                    // Build height value
-                    s = new StringBuilder();
-                    while (char.IsDigit(read))
-                    {
-                        s.Append(read);
-                        read = reader.ReadChar();
-                    }
-                    int height = int.Parse(s.ToString());
+                    skipToFirstDigit();
+                    int width = getNumber();
+                    skipToFirstDigit();
+                    int height = getNumber();
 
                     Bitmap bitmap = new Bitmap(width, height);
                     //Read in the pixels
@@ -82,7 +61,7 @@ namespace PhotoRacoon.Readers
                 return PPM_TYPE.UNKNOWN;
         }
 
-        private static void skipToFirstDigit(ref char read)
+        private static void skipToFirstDigit()
         {
             bool isComment = false;
 
@@ -96,6 +75,18 @@ namespace PhotoRacoon.Readers
                     isComment = false;
             }
             while (char.IsWhiteSpace(read) || isComment);
+        }
+
+        private static int getNumber()
+        {
+            StringBuilder s = new StringBuilder();
+            while (char.IsDigit(read))
+            {
+                s.Append(read);
+                read = reader.ReadChar();
+            }
+
+            return int.Parse(s.ToString());
         }
     }
 }
