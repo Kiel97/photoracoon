@@ -31,9 +31,7 @@ namespace PhotoRacoon.Readers
                     else if (type == PPM_TYPE.P6)
                         throw new NotSupportedException("Not implemented yet.");
 
-                    skipToFirstDigit();
                     int width = getNumber();
-                    skipToFirstDigit();
                     int height = getNumber();
 
                     Bitmap bitmap = new Bitmap(width, height);
@@ -79,6 +77,8 @@ namespace PhotoRacoon.Readers
 
         private static int getNumber()
         {
+            skipToFirstDigit();
+
             StringBuilder s = new StringBuilder();
             while (char.IsDigit(read))
             {
