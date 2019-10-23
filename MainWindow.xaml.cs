@@ -259,6 +259,8 @@ namespace PhotoRacoon
                     Source = Converters.Converters.BitmapToImageSource(bitmap)
                 };
 
+                RenderOptions.SetBitmapScalingMode(image, BitmapScalingMode.NearestNeighbor);
+
                 Window window = new Window
                 {
                     Title = $"PPM Viewer Pro - {filepath}",
